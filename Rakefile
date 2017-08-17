@@ -4,4 +4,6 @@
 # Bundler.require
 
 require 'opal/rspec/rake_task'
-Opal::RSpec::RakeTask.new(:default)
+Opal::RSpec::RakeTask.new(:default) do |s|
+  s.append_path 'lib'
+end
