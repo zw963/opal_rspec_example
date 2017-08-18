@@ -5,6 +5,8 @@
 
 require 'opal/rspec/rake_task'
 Opal::RSpec::RakeTask.new(:default) do |server, task|
+  # 如果需要完全改写 load paths, 使用 task.default_path = 'spec/javascripts'
+  # 奇怪, 这里是 task, 而不是 server!
   server.append_path 'lib'
   task.runner = :node
 end
