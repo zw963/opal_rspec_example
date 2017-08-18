@@ -9,4 +9,5 @@ Opal::RSpec::RakeTask.new(:default) do |server, task|
   # 奇怪, 这里是 task, 而不是 server!
   server.append_path 'lib'
   # task.runner = :node
+  task.timeout = 10000          # 修改 phantomjs timeout 时间, 有时候运行失败, 需要等很久才能退出.
 end
