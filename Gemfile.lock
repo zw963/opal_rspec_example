@@ -13,6 +13,7 @@ GEM
     opal-rspec (0.6.1)
       opal (>= 0.10.0, < 0.12)
     rack (2.0.3)
+    rake (10.4.2)
     sourcemap (0.1.1)
     sprockets (3.7.1)
       concurrent-ruby (~> 1.0)
@@ -26,6 +27,7 @@ DEPENDENCIES
   opal
   opal-jquery
   opal-rspec
+  rake
 
 BUNDLED WITH
-   1.15.1
+   1.15.3
