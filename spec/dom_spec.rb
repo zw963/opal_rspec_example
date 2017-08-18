@@ -1,6 +1,5 @@
-# require 'jquery-1.12.4.min'
-# require 'jquery-migrate-1.4.1.min'
-require 'zepto.min'
+require 'jquery-1.12.4.min'
+require 'jquery-migrate-1.4.1.min'
 require 'opal'
 require 'opal-jquery'
 
