@@ -8,6 +8,8 @@ GEM
       sourcemap (~> 0.1.0)
       sprockets (~> 3.1)
       tilt (>= 1.4)
+    opal-jquery (0.4.2)
+      opal (>= 0.7.0, < 0.11.0)
     opal-rspec (0.6.1)
       opal (>= 0.10.0, < 0.12)
     rack (2.0.3)
@@ -21,6 +23,8 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  opal
+  opal-jquery
   opal-rspec
 
 BUNDLED WITH
