@@ -17,9 +17,9 @@ HEREDOC
     div.append_to_body
 
     d = Element.find('#target-div')
-    expect(d.text).to =~ /original test/
+    expect(d.text).to match(/original text/)
 
     `document.getElementById('target-div').innerText = 'js replaced text'`
-    expect(d.text).to =~ /js replaced text/
+    expect(d.text).to match(/js replaced text/)
   end
 end
