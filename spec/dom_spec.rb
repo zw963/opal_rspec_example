@@ -4,24 +4,23 @@ require 'zepto.min'
 require 'opal'
 require 'opal-jquery'
 
-# describe 'DOM Testing' do
-#   it 'should see dom changes' do
-#     div = <<-'HEREDOC'
-# <div id="target-div">
-#   original text
-# </div>
-# HEREDOC
+describe 'DOM Testing' do
+  it 'should see dom changes' do
+    div = <<-'HEREDOC'
+<div id="target-div">
+  original text
+</div>
+HEREDOC
 
-#     # # 我们可以使用 Element.parse 来建立这个一个 Dom 元素.
-#     # div = Element.parse(div)
-#     # # puts div.methods
-#     # puts '*'*100
-#     # div.append_to_body
+    # 我们可以使用 Element.parse 来建立这个一个 Dom 元素.
+    div = Element.parse(div)
+    # puts div.methods
+    div.append_to_body
 
-#     # d = Element.find('#target-div')
-#     # expect(d.text).to =~ /original test/
+    d = Element.find('#target-div')
+    expect(d.text).to =~ /original test/
 
-#     # `document.getElementById('target-div').innerText = 'js replaced text'`
-#     # expect(d.text).to =~ /js replaced text/
-#   end
-# end
+    `document.getElementById('target-div').innerText = 'js replaced text'`
+    expect(d.text).to =~ /js replaced text/
+  end
+end
