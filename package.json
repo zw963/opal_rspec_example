@@ -1,0 +1,9 @@
+{
+  "name": "opal_rspec_example",
+  "private": true,
+  "repository": "git@github.com:zw963/opal_rspec_example",
+  "author": "Billy.Zheng <zw963@163.com>",
+  "dependencies": {
+    "jquery": "1.12.4"
+  }
+}
