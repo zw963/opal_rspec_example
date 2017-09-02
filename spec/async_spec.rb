@@ -27,3 +27,23 @@ describe '上面的等价写法, 更简单.' do
 
   it { is_expected.to eq 42 }
 end
+
+
+describe "老式的写法, 现在仍被支持" do
+  # puts method(:async)
+  async "can test async javascript" do
+    puts "starting async"       # proof to myself this works
+    `var foo = 1`
+    # you can assert values on js
+    `foo`.should == 1
+
+    # you can call js via xstrings
+    # opal is smart enough to expand the run_async line via string
+    #interpolation.
+    %x| setTimeout( function()
+                     { console.log('in timeout');
+                       foo = 2;
+                       #{run_async { `foo`.should == 2} }
+                      }, 10 )|
+  end
+end
