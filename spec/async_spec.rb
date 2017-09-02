@@ -1,3 +1,12 @@
+# 关于老式写法和新式写法的理解:
+
+# 老式写法, 通过 async 和 run_async 这种方式, 将异步的执行方式, 使用一种很直白的
+# 的方式描述了出来.
+
+# 而新的写法, 通过 Promise, 统一了新的写法和老的写法, 无需新的语法支持,
+# 只要 subject 返回一个 promise, 稍后的测试, 就会自动判断, 如果这个是一个
+# Promise, 则会等待这个 Promise resolve 之后, 再执行验证.
+
 describe 'async' do
   # 注意 promise 可以在 subject 之中被调用.
   # 但是无法在 let 中使用, 因为 let 是 lazy 的.
@@ -28,22 +37,38 @@ describe '上面的等价写法, 更简单.' do
   it { is_expected.to eq 42 }
 end
 
-
-describe "老式的写法, 现在仍被支持" do
-  # puts method(:async)
+describe '老式的写法, 现在仍被支持' do
+  # 需要使用新的写法: async 来表示, 这里 spec 将要执行异步测试.
   async "can test async javascript" do
-    puts "starting async"       # proof to myself this works
+    # 但是, 仍然可以验证同步的代码.
+    puts 'starting async'       # proof to myself this works
     `var foo = 1`
     # you can assert values on js
-    `foo`.should == 1
+    expect(`foo`).to eq 1
 
-    # you can call js via xstrings
-    # opal is smart enough to expand the run_async line via string
-    #interpolation.
+
+    # 注意: async 代码块要求, 代码中必须调用 run_async { ... } 来通知
+    # 这个 spec 已经执行完成(resolved), 否则会报错: `Specs timed out'.
+    # 而 block 之中的代码, 会异步的在后台执行, async 会等待该 block 执行
+    # 完成之后, 返回验证的结果.
+
     %x| setTimeout( function()
                      { console.log('in timeout');
                        foo = 2;
-                       #{run_async { `foo`.should == 2} }
-                      }, 10 )|
+                       #{run_async { expect(`foo`).to eq 2} }
+                      }, 10 )
+    |
+  end
+
+  async 'HTTP requests should work' do
+    require 'ext'
+    HTTP.get('http://api.mymart.com/v1/google_maps.json?lat=31.2231277&lng=120.914901') do |json|
+      run_async {
+        # 不知道为啥不成功, 稍后再解决.
+        # 注意, 这里的代码运行上下文和 run_async 代码块外面是同一个上下文.
+        # 唯一不同的是, 这里的代码被延迟执行, 即: 异步代码执行完成之后才执行.
+        expect(json).to_not be_ok
+      }
+    end
   end
 end
