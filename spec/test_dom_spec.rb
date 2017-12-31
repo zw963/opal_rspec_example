@@ -10,7 +10,7 @@ describe 'DOM Testing' do
 </div>
 HEREDOC
 
-    # 我们可以使用 Element.parse 来建立这个一个 Dom 元素.
+    # 我们可以使用 Element.parse 来建立这个 Dom 元素.
     div = Element.parse(div)
     # puts div.methods
     div.append_to_body
