@@ -1,4 +1,4 @@
-p require 'jquery/dist/jquery.min'
+require 'jquery/dist/jquery.min'
 require 'opal'
 require 'opal-jquery'
 
