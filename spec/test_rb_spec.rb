@@ -1,4 +1,4 @@
-require 'test_another_class'
+require 'test_rb'
 
 describe OpalClassToBeTested do
   subject { OpalClassToBeTested.new('bill', 'thompson') }
